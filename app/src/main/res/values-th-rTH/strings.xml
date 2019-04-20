@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="logout">ออกจากระบบ</string>
+    <string name="title_activity_settings">กาตตั้งค่า</string>
+    <string name="langtext">ภาษา</string>
+    <string name="app_name">ปฎิทิน เเละ ไดอารี่</string>
+    <string name="ok">ตกลง</string>
+    <string name="cancel">ปฎิเสธ</string>
+    <string name="applybtn">apply</string>
+    <string name="cancelbtn">cancel</string>
+</resources>

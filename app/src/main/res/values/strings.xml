@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name">calendar</string>
+    <string name="title_placeholder" translatable="false">Title</string>
+    <string name="news_placeholder" translatable="false">Title Name</string>
+    <string name="subtitle_detail_text" translatable="false">Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Praesent ultrices congue rutrum.
+        Phasellus elementum ipsum ac convallis aliquam. Suspendisse eleifend
+        eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum
+        blandit, dolor diam fringilla tellus, eu euismod mauris neque
+        at neque.</string>
+    <string name="info_placeholder" translatable="false">Here is some news</string>
+    <string-array name="month_titles">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="mock_date">
+        <item>dd MMMM</item>
+        <item>01 February</item>
+        <item>01 March</item>
+        <item>01 April</item>
+        <item>01 May</item>
+        <item>01 June</item>
+        <item>01 July</item>
+        <item>01 August</item>
+        <item>01 September</item>
+        <item>01 October</item>
+        <item>01 November</item>
+        <item>01 December</item>
+    </string-array>
+    <string-array name="info">
+        <item>@string/subtitle_detail_text</item>
+        <item>Here is some Badminton news!</item>
+        <item>Here is some Basketball news!</item>
+        <item>Here is some Bowling news!</item>
+        <item>Here is some Cycling news!</item>
+        <item>Here is some Golf news!</item>
+        <item>Here is some Running news!</item>
+        <item>Here is some Soccer news!</item>
+        <item>Here is some Swimming news!</item>
+        <item>Here is some Table Tennis news!</item>
+        <item>Here is some Tennis news!</item>
+        <item>Here is some Tennis news!</item>
+    </string-array>
+    <array name="images">
+        <item>@drawable/img_1</item>
+        <item>@drawable/img_2</item>
+        <item>@drawable/img_3</item>
+        <item>@drawable/img_4</item>
+        <item>@drawable/img_5</item>
+        <item>@drawable/img_6</item>
+        <item>@drawable/img_7</item>
+        <item>@drawable/img_8</item>
+        <item>@drawable/img_9</item>
+        <item>@drawable/img_10</item>
+        <item>@drawable/img_11</item>
+        <item>@drawable/img_12</item>
+    </array>
+    <array name="images_cat">
+        <item>@drawable/rand1</item>
+        <item>@drawable/rand2</item>
+        <item>@drawable/rand3</item>
+        <item>@drawable/rand4</item>
+        <item>@drawable/rand5</item>
+        <item>@drawable/rand6</item>
+        <item>@drawable/rand7</item>
+        <item>@drawable/rand8</item>
+        <item>@drawable/rand9</item>
+        <item>@drawable/rand10</item>
+        <item>@drawable/rand11</item>
+        <item>@drawable/rand12</item>
+        <item>@drawable/rand13</item>
+        <item>@drawable/rand14</item>
+        <item>@drawable/rand15</item>
+    </array>
+    <string name="title_activity_settings">Preferences</string>
+    <string name="langtext">languages</string>
+    <string name="logout">logout</string>
+    <array name="langs">
+        <item>English (default)</item>
+        <item>ไทย</item>
+    </array>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="applybtn">apply</string>
+    <string name="cancelbtn">cancel</string>
+
+</resources>
