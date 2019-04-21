@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="logout">ออกจากระบบ</string>
-    <string name="title_activity_settings">กาตตั้งค่า</string>
+    <string name="title_activity_settings">การตั้งค่า</string>
     <string name="langtext">ภาษา</string>
     <string name="app_name">ปฎิทิน เเละ ไดอารี่</string>
     <string name="ok">ตกลง</string>
     <string name="cancel">ปฎิเสธ</string>
-    <string name="applybtn">apply</string>
-    <string name="cancelbtn">cancel</string>
+    <string name="applybtn">ตกลง</string>
+    <string name="cancelbtn">ยกเลิก</string>
+    <string name="add_diary">เพิ่ม ไดอารี่</string>
+    <string name="refresh">รีเฟรช</string>
+    <string name="month">หน้าปฎิทิน</string>
+    <string name="preferences">การตั้งค่า</string>
+    <string name="sample_dialog_message">ออกจากระบบ?</string>
+    <string name="schedule">หน้าเเรก</string>
+    <string name="login">เข้าสู่ระบบ</string>
+    <string name="noaccounttext">ยังไม่มีสมาชิก? สมัครเลย</string>
+    <string name="register">ลงทะเบียน</string>
+    <string name="loginas">เข้าสู่ระบบ ใช้</string>
+    <string name="email">อีเมลล์</string>
+    <string name="password">รหัสผ่าน</string>
+    <string name="cpassword">ยืนยันรหัสผ่าน</string>
+    <string name="name">ชื่อ</string>
 </resources>

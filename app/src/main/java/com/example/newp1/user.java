@@ -1,5 +1,16 @@
 package com.example.newp1;
 
+/***
+ *
+ * User class
+ *
+ * store diary info:
+ * - user name
+ * - user email
+ * - user password
+ *
+ * contain constructor and getter setter
+ */
 public class user {
 
     private int id;
@@ -7,6 +18,9 @@ public class user {
     private String email;
     private String password;
 
+    /**
+    * contain constructor and getter setter
+    */
     public user() {
     }
 
@@ -17,6 +31,9 @@ public class user {
         this.password = password;
     }
 
+    /**
+     * contain constructor and getter setter
+     */
     public int getId() {
         return id;
     }

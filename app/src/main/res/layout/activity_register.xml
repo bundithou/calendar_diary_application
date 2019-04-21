@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="name"
+            android:hint="@string/name"
             android:inputType="textPersonName" />
 
         <EditText
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="email "
+            android:hint="@string/email"
             android:inputType="textPersonName" />
 
         <EditText
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <EditText
@@ -42,20 +42,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="confirm password"
+            android:hint="@string/cpassword"
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ok" />
+            android:text="@string/ok" />
 
         <Button
             android:id="@+id/cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="cancel" />
+            android:text="@string/cancelbtn" />
 
     </LinearLayout>
 </RelativeLayout>

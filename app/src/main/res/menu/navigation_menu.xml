@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/add_diary"
-        android:title="add diary"/>
+        android:title="@string/add_diary"/>
     <item android:id="@+id/refresh"
-        android:title="refresh"/>
-    <item android:id="@+id/schedule"
-        android:title="schedule"/>
+        android:title="@string/refresh"/>
+    <item android:id="@+id/month"
+        android:title="@string/month"/>
+    <item android:id="@+id/settings"
+        android:title="@string/preferences"/>
+
     <!--<item android:id="@+id/day"-->
         <!--android:title="day"/>-->
     <!--<item android:id="@+id/week"-->
         <!--android:title="week"/>-->
-    <item android:id="@+id/month"
-        android:title="month"/>
-    <item android:id="@+id/settings"
-        android:title="Preference"/>
+
     <!--<item android:id="@+id/logout"-->
         <!--android:title="logout"/>-->
 </menu>

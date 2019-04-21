@@ -24,21 +24,35 @@ import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 
-
+/***
+ *
+ * DiaryAdapter for RecyclerView
+ *
+ *  features:
+ *  - CardView and RecyclerView
+ *
+ *  make CardView and add to RecyclerView
+ */
 class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
 
     // Member variables.
     private ArrayList<Diary> mDiaryData;
     private Context mContext;
 
-
+    /**
+     * constructor
+     *
+     * @param diaryData (list of diaries)
+     * */
     DiaryAdapter(Context context, ArrayList<Diary> diaryData) {
         this.mDiaryData = diaryData;
         this.mContext = context;
     }
 
-
-
+    /**
+     * make a CardView
+     *
+     * */
     @Override
     public DiaryAdapter.ViewHolder onCreateViewHolder(
             ViewGroup parent, int viewType) {
@@ -46,7 +60,11 @@ class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
                 inflate(R.layout.list_item, parent, false));
     }
 
-
+    /**
+     * onBindViewHolder
+     *
+     * after selected a card view, show the diary
+     * */
     public void onBindViewHolder(DiaryAdapter.ViewHolder holder,
                                  int position) {
         // Get current sport.
@@ -56,14 +74,19 @@ class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
         holder.bindTo(currentDiary);
     }
 
-
+    //count diaries
     @Override
     public int getItemCount() {
         return mDiaryData.size();
     }
 
 
-
+    /***
+     *
+     * ViewHolder(CardView) for RecyclerView
+     *
+     *  make CardView and add to RecyclerView
+     */
     class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener{
 
@@ -73,7 +96,9 @@ class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
         private TextView mSubTitle;
         private ImageView mImage;
 
-
+        /**
+         * constructor
+         * */
         ViewHolder(View itemView) {
             super(itemView);
 
@@ -87,6 +112,10 @@ class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
             itemView.setOnClickListener(this);
         }
 
+        /**
+         * set the detail on Card view
+         *
+         * */
         void bindTo(Diary currentDiary){
             // Populate the textviews with data.
             mTitleText.setText(currentDiary.getDate());
@@ -104,36 +133,14 @@ class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
                         Integer.parseInt(img[1])).into(mImage);
             }
             if(img[0].equals("u")){
-                System.out.println(img[1]);
-
-                Uri fileUri = Uri.parse(img[1]);
-                //System.out.println(fileUri.);
-                //mContext.grantUriPermission("com.example.newp1", fileUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                //revoke permisions
-                //mContext.revokeUriPermission(fileUri, );
-
-                /**
-                 * permission error
-                 * java.lang.SecurityException(Permission Denial: opening provider com.android.providers.media.MediaDocumentsProvider
-                 * from ProcessRecord{51795fc 29810:com.example.newp1/u0a226} (pid=29810, uid=10226)
-                 * requires android.permission.MANAGE_DOCUMENTS or android.permission.MANAGE_DOCUMENTS)
-                 *
-                 * */
-                //Glide.with(mContext).load(fileUri).into(mImage);
-
-                //String[] proj = {MediaStore.Images.Media.DATA};
-                //Cursor cursor = mContext.getContentResolver().query(fileUri, proj, null, null, null);
-                //int col = cursor.getColumnIndexOrThrow(proj[0]);
-                //cursor.moveToFirst();
-                //File f = new File(cursor.getString(col));
-                //Glide.with(mContext).load(f).into(mImage);
                 mImage.setImageURI(Uri.parse(img[1]));
-                //Picasso.with(mContext).load(fileUri).into(mImage);
             }
-            //mImage.setImageResource(currentDiary.getImageResource());
         }
 
-
+        /**
+         *
+         * send the selected diary card to diary view
+         * */
         @Override
         public void onClick(View view) {
             Diary current = mDiaryData.get(getAdapterPosition());
@@ -145,7 +152,5 @@ class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
                     current.getImageResource());
             mContext.startActivity(detailIntent);
         }
-
-
     }
 }

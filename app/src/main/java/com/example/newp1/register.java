@@ -10,6 +10,12 @@ import android.widget.Toast;
 
 import java.util.jar.Attributes;
 
+/***
+ *
+ * RegisterActivity
+ *
+ * insert data to create account in database
+ */
 public class register extends AppCompatActivity {
 
 
@@ -18,6 +24,13 @@ public class register extends AppCompatActivity {
     usermanager userdb;
     user user;
 
+    /**
+     * @override
+     * onCreate method
+     *
+     * declares initial objects
+     *
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +43,9 @@ public class register extends AppCompatActivity {
         initObjects();
     }
 
+    /**
+     * initialize views
+     * */
     private void initViews() {
         name = (EditText) findViewById(R.id.name);
         Password = (EditText) findViewById(R.id.password);
@@ -39,6 +55,9 @@ public class register extends AppCompatActivity {
         RegisterButton = (Button) findViewById(R.id.ok);
     }
 
+    /**
+     * initialize listeners
+     * */
     private void initListeners() {
         CancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,12 +73,20 @@ public class register extends AppCompatActivity {
             }
         });
     }
+    /**
+     * initialize database
+     * */
     private void initObjects() {
 
         userdb = new usermanager(this);
         user = new user();
 
     }
+
+    /**
+     * post created user to SQLite
+     *
+     * */
     private void postDataToSQLite() {
 
         String namevalue = name.getText().toString().trim();
@@ -106,6 +133,7 @@ public class register extends AppCompatActivity {
 
     }
 
+    /* empty input */
     private void emptyInputEditText() {
         name.setText(null);
         Email.setText(null);

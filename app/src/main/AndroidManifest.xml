@@ -15,12 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".Preferences"></activity>
         <activity android:name=".register" />
         <activity android:name=".login" />
         <activity android:name=".monthView" />
-        <activity android:name=".dayView" />
-        <activity android:name=".weekView" />
         <activity android:name=".AddDiary" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".MainActivity">
@@ -30,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

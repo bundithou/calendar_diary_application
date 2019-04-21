@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -285,12 +286,13 @@ public class usermanager extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;
 
     public boolean insertDiary(Date date, String title, String detail, String coverimg, String user) {
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd");
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(FeedEntry.COLUMN_NAME_USER, user);
         contentValues.put(FeedEntry.COLUMN_NAME_TITLE, title);
         contentValues.put(FeedEntry.COLUMN_NAME_DETAIL, detail);
-        contentValues.put(FeedEntry.COLUMN_NAME_DATE, date.toString());
+        contentValues.put(FeedEntry.COLUMN_NAME_DATE, "2019-"+format.format(date));
         contentValues.put(FeedEntry.COLUMN_NAME_COVER, coverimg);
         db.insert(FeedEntry.TABLE_NAME, null, contentValues);
         return true;
@@ -334,12 +336,11 @@ public class usermanager extends SQLiteOpenHelper {
         // Traversing through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Date date = new Date(cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_DATE)));
-                DateFormat dateFormat = new SimpleDateFormat("dd");
-                DateFormat monthFormat = new SimpleDateFormat("MMMM");
+
+
                 Diary user = new Diary(
                         cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_USER)),
-                        dateFormat.format(date) +" "+ monthFormat.format(date),
+                        cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_DATE)),
                         cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_TITLE)),
                         cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_DETAIL)),
                         cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_COVER))

@@ -42,8 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/TitleDetail"
+            android:autoLink="web|phone|email"
             android:padding="16dp"
-            android:text="@string/subtitle_detail_text" />
+            android:text="@string/subtitle_detail_text"
+            android:textColorLink="@color/design_default_color_primary" />
 
         <TextView
             android:id="@+id/DateTitle"

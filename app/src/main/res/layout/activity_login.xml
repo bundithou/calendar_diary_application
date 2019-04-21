@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="email"
+            android:hint="@string/email"
             android:inputType="textPersonName"
             android:paddingBottom="16dp" />
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:ems="10"
-            android:hint="password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <Button
@@ -37,27 +37,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="login" />
+            android:text="@string/login" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="No account yet? create one" />
+            android:text="@string/noaccounttext" />
 
         <Button
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="register" />
+            android:text="@string/register" />
 
         <Button
             android:id="@+id/login_as"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/design_default_color_primary"
-            android:text="Login as"
+            android:text="@string/loginas"
             android:textColor="@android:color/background_light"
             android:visibility="invisible" />
     </LinearLayout>

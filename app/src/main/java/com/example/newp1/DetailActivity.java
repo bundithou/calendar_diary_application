@@ -7,9 +7,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
-
+/***
+ *
+ * DetailActivity (Diary view, or Diary page)
+ *
+ * show the only one diary
+ */
 public class DetailActivity extends AppCompatActivity {
 
+    /**
+     * @override
+     * onCreate method
+     *
+     * declares initial objects for show the diary details
+     *
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,18 +40,13 @@ public class DetailActivity extends AppCompatActivity {
         DateDetail.setText(getIntent().getStringExtra("title"));
 
         // Load the image using the Glide library and the Intent extra.
-        //Glide.with(this).load(getIntent().getIntExtra("image_resource",0))
-        //.into(sportsImage);
         String[] img = getIntent().getStringExtra("image_resource").split(",");
         if(img[0].equals("d")){
             Glide.with(this).load(
                     Integer.parseInt(img[1])).into(Image);
         }
         if(img[0].equals("u")){
-            //Uri fileUri = Uri.parse(img[1]);
             Glide.with(this).load(Uri.parse(img[1])).into(Image);
-            //mImage.setImageURI(new URI(img[1]));
         }
-        //Image.setImageResource(Integer.parseInt(getIntent().getStringExtra("image_resource")));
     }
 }

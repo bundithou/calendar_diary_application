@@ -21,32 +21,43 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
+/***
+ *
+ * Add Diary Activity
+ *
+ *  features:
+ *  - import images from Resource(by random) and Gallery(External Storage)
+ *
+ *  after made a diary, show diary page
+ */
 public class AddDiary extends AppCompatActivity {
-
-
+    //member variables
     private static int IMG_RESULT = 1;
     String ImageDecode;
-
-    //Diary main;
     usermanager db;
     String user = "";
-
     ImageView cover;
     EditText textdetail;
     EditText texttitle;
     FloatingActionButton fab_save;
     Spinner dayspinner;
     Spinner monthspinner;
-
     private Date currentTime;
     private int currentday;
     private int currentmonth;
     private Date selectedTime;
     int iday;
     int imonth;
-
     boolean isAddCover;
 
+    /**
+     * @override
+     * onCreate method
+     *
+     * declares initial objects
+     * Time, SharePreference, Spinner
+     *
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +69,10 @@ public class AddDiary extends AppCompatActivity {
         initiallistenner();
     }
 
+    /**
+     * object initializer method
+     *
+     * */
     private  void initialobject(){
         textdetail = (EditText) findViewById(R.id.text) ;
         texttitle = (EditText) findViewById(R.id.text_title);
@@ -76,21 +91,26 @@ public class AddDiary extends AppCompatActivity {
         user = getIntent().getStringExtra("user");
     }
 
+    /**
+     * Time initializer method
+     * */
     private void initialcurrenttime(){
         currentTime = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd");
         DateFormat monthFormat = new SimpleDateFormat("MM");
         currentday = Integer.valueOf(dateFormat.format(currentTime));
         currentmonth = Integer.valueOf(monthFormat.format(currentTime));
-        //Toast.makeText(this, currentday+" "+currentmonth, Toast.LENGTH_LONG)
-         //       .show();
-
     }
-    private  void initialspinner(){
+
+    /**
+     * Spinner initializer method
+     *
+     * mostly for month spinner
+     *
+     * */
+    private void initialspinner(){
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        //ArrayAdapter<CharSequence> monthadapter = ArrayAdapter.createFromResource(this,
-        //        R.array.month_titles, android.R.layout.simple_spinner_item);
         String text="";
         for(int i=1;i<=12;i++){
             text += String.valueOf(i);
@@ -105,12 +125,22 @@ public class AddDiary extends AppCompatActivity {
         // Apply the adapter to the spinner
         monthspinner.setAdapter(monthadapter);
 
+        //initialize day spinner
         initialdayspinner(31);
 
+        //set selection
         monthspinner.setSelection(currentmonth-1);
         dayspinner.setSelection(currentday-1);
     }
 
+    /**
+     * day spinner initializer method
+     * for day spinner only
+     * also called after selected month
+     * for changing days in spinner
+     *
+     * @param limday (last day of month)
+     * */
     private void initialdayspinner(int limday){
         String text="";
         for(int i=1;i<=limday;i++){
@@ -123,6 +153,12 @@ public class AddDiary extends AppCompatActivity {
         dayspinner.setAdapter(dayadapter);
     }
 
+    /**
+     * set listener of objects
+     * - make and save a diary in database
+     * - import image to cover image view
+     * - day and month selection
+     * */
     private void initiallistenner(){
         fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,7 +215,7 @@ public class AddDiary extends AppCompatActivity {
                 initialdayspinner(lim_day);
                 dayspinner.setSelection(currentday-1);
 
-                imonth = position+1;
+                imonth = position;
             }
 
             @Override
@@ -201,6 +237,11 @@ public class AddDiary extends AppCompatActivity {
         });
     }
 
+    /**
+     * add image method
+     *
+     * called startActivityForResult to pick a image
+     * */
     private void addimage(){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -208,6 +249,11 @@ public class AddDiary extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMG_RESULT);
     }
 
+    /**
+     * save a diary to database
+     *
+     * param diary info
+     * */
     private void save(Date date, String title, String detail, String image){
         Intent myIntent = new Intent(AddDiary.this,
                 DetailActivity.class);
@@ -221,11 +267,15 @@ public class AddDiary extends AppCompatActivity {
         myIntent.putExtra("date", date.toString());
         startActivity(myIntent);
 
-        //main = new Diary("", date.toString(), title, detail, image);
         db.insertDiary(date, title, detail, image, user);
         finish();
     }
 
+    /**
+     * used after AddImage method
+     * - get intent data(Uri)
+     *
+     * */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -236,20 +286,12 @@ public class AddDiary extends AppCompatActivity {
 
                 Uri selectedImageUri = data.getData();
 
-                //System.out.println(selectedImageUri.toString());
                 ImageDecode = "u,"+selectedImageUri.toString();
-                //String text = "u,"+selectedImageUri.toString();
-                //System.out.println(text);
-                //String[] text2 = text.split(",");
-                //System.out.println("type: "+text2[0]);
-                //System.out.println("type: "+text2[1]);
 
                 cover.setImageURI(selectedImageUri);
                 isAddCover = true;
             }
         } catch (Exception e) {
-//            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG)
-//                    .show();
             textdetail.setText(e.getLocalizedMessage());
         }
 

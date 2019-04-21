@@ -18,26 +18,39 @@ import android.widget.Toast;
 
 import java.util.List;
 
+/**
+ * Login Activity
+ *
+ * called from MainActivity
+ * authenticate users before using this application
+ *
+ * */
 public class login extends AppCompatActivity {
-
+    //members variables
     Button LogInButton, RegisterButton , loginas;
-    EditText Username, Password ;//Email
-    String EmailHolder, PasswordHolder;
-    Boolean EditTextEmptyHolder;
-    SQLiteDatabase sqLiteDatabaseObj;
+    EditText Username, Password ;
     usermanager userdb;
-    Cursor cursor;
-    String TempPassword = "NOT_FOUND" ;
-    public static final String UserEmail = "";
     SharedPreferences sp;
-
     String email;
     String name;
+    String langs[] = {"en","TH"};
 
+    /**
+     * @override
+     * onCreate method
+     *
+     * initialize objects, listeners, views
+     * (optional) change language
+     * hide SupportActionBar
+     *
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        MainActivity.updateResources(this, langs[getIntent().getIntExtra("lang",0)]);
+
 
         getSupportActionBar().hide();
 
@@ -47,21 +60,27 @@ public class login extends AppCompatActivity {
 
     }
 
-
+    /**
+     * View initializer method
+     *
+     * EditView, Button
+     * */
     private void initViews() {
         Username = (EditText) findViewById(R.id.username);
         Password = (EditText) findViewById(R.id.password);
         LogInButton = (Button) findViewById(R.id.button_login);
         RegisterButton = (Button) findViewById(R.id.register);
-
         loginas = (Button) findViewById(R.id.login_as);
         loginas.setVisibility(View.INVISIBLE);
-
-        userdb = new usermanager(this);
-
-
     }
 
+    /**
+     * Listener setting method
+     *
+     * Login button - get user and password form view inside verifyFromSQLite method
+     * Register button - go to Register Activity
+     * Login as button - get user from SharePreferences object
+     * */
     private void initListeners() {
         LogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +104,7 @@ public class login extends AppCompatActivity {
                         .show();
                 sp.edit().putString("logged", email).apply();
                 Intent resultIntent = new Intent();
-
+                resultIntent.putExtra("activity", "login");
                 resultIntent.putExtra("u_email", email);
                 resultIntent.putExtra("u_name", finduser(email).getName());
                 setResult(Activity.RESULT_OK, resultIntent);
@@ -94,21 +113,30 @@ public class login extends AppCompatActivity {
         });
     }
 
+    /**
+     * initialize SharePreference, database
+     * */
     private void initObjects() {
         sp = getSharedPreferences("login",MODE_PRIVATE);
-
+        userdb = new usermanager(this);
         if(!sp.getString("logged","").equals("")
                 && sp.getString("logged","") != null
                 && userdb.checkUser(sp.getString("logged",""))){
             email = sp.getString("logged","");
-            System.out.println("sp = "+email);
-            loginas.setText("LOGIN AS "+email);
+            loginas.setText(getResources().getString(R.string.loginas)+email);
             loginas.setVisibility(View.VISIBLE);
-            //Username.setText(email, TextView.BufferType.EDITABLE);
         }
-
     }
 
+    /**
+     * used when clicking on login button
+     * verify user by SQLite
+     * set user logged in SharePreference
+     * go to MainActivity with user account as a result
+     *
+     * @param u_value (user email)
+     * @param p_value (user password)
+     * */
     private void verifyFromSQLite(String u_value, String p_value) {
 
         if(u_value == null){
@@ -117,7 +145,6 @@ public class login extends AppCompatActivity {
         if(p_value == null){
             p_value = Password.getText().toString().trim();
         }
-
 
         if (u_value.isEmpty()) {
             Toast.makeText(this, "Please input your email", Toast.LENGTH_LONG)
@@ -149,16 +176,20 @@ public class login extends AppCompatActivity {
 
             resultIntent.putExtra("u_email", u_value);
             resultIntent.putExtra("u_name", this.finduser(u_value).getName());
+            resultIntent.putExtra("activity","login");
             setResult(Activity.RESULT_OK, resultIntent);
             finish();
 
         } else {
-            // Snack Bar to show success message that record is wrong
             Toast.makeText(this, "Wrong Email or Password", Toast.LENGTH_LONG)
                     .show();
         }
     }
 
+    /**
+     * hide keyboard after clicking Login button
+     *
+     * */
     private void hideKeyboardFrom() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -167,6 +198,10 @@ public class login extends AppCompatActivity {
         }
     }
 
+    /**
+     * get user account from database by user email
+     *
+     * */
     private user finduser(String email){
         List<user> userlist = userdb.getAllUser();
         for(user u : userlist){

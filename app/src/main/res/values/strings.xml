@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">calendar</string>
+    <string name="app_name">calendar and diary</string>
     <string name="title_placeholder" translatable="false">Title</string>
     <string name="news_placeholder" translatable="false">Title Name</string>
     <string name="subtitle_detail_text" translatable="false">Lorem ipsum dolor sit amet,
@@ -94,5 +94,20 @@
     <string name="cancel">cancel</string>
     <string name="applybtn">apply</string>
     <string name="cancelbtn">cancel</string>
+
+    <string name="schedule">home</string>
+    <string name="add_diary">add diary</string>
+    <string name="refresh">refresh</string>
+    <string name="month">month view</string>
+    <string name="preferences">preferences</string>
+    <string name="sample_dialog_message">Do you want to logout?</string>
+    <string name="login">login</string>
+    <string name="noaccounttext">No account yet? create one</string>
+    <string name="register">register</string>
+    <string name="loginas">"login as "</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="cpassword">confirm password</string>
+    <string name="name">name</string>
 
 </resources>
